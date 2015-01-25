@@ -48,6 +48,18 @@ def populate():
              title="Flask",
              url="http://flask.pocoo.org")
 
+    alex_cat = add_cat("Alex Smith")
+
+    add_page(cat=alex_cat,
+             title="gitHub",
+             url="https://github.com/2083008")
+
+    add_page(cat=alex_cat,
+             title="PythonAnywhere",
+             url="https://www.pythonanywhere.com/user/2083008/consoles/")
+
+
+
     # Print out what we have added to the user.
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
@@ -62,15 +74,15 @@ def add_page(cat, title, url, views=0):
 def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
     if name == "Python":
-        c.views = 128
+        c.views = 128   #  c = Category(views=128)
         c.likes = 64
+
     if name == "Django":
         c.views = 64
         c.likes = 32
-    else:
+    if name == "Other Frameworks":
         c.views = 32
         c.likes = 16
-
     return c
 
 # Start execution here!
