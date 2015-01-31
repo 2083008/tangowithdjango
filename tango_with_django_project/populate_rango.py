@@ -14,11 +14,13 @@ def populate():
 
     add_page(cat=python_cat,
              title="Official Python Tutorial",
-             url="http://docs.python.org/2/tutorial/")
+             url="http://docs.python.org/2/tutorial/",
+             views=43)
 
     add_page(cat=python_cat,
              title="How to Think like a Computer Scientist",
-             url="http://www.greenteapress.com/thinkpython/")
+             url="http://www.greenteapress.com/thinkpython/",
+             views=5)
 
     add_page(cat=python_cat,
              title="Learn Python in 10 Minutes",
@@ -28,15 +30,18 @@ def populate():
 
     add_page(cat=django_cat,
              title="Official Django Tutorial",
-             url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
+             url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/",
+             views=15)
 
     add_page(cat=django_cat,
              title="Django Rocks",
-             url="http://www.djangorocks.com/")
+             url="http://www.djangorocks.com/",
+             views=300)
 
     add_page(cat=django_cat,
              title="How to Tango with Django",
-             url="http://www.tangowithdjango.com/")
+             url="http://www.tangowithdjango.com/",
+             views=2000)
 
     frame_cat = add_cat("Other Frameworks")
 
@@ -73,16 +78,19 @@ def add_page(cat, title, url, views=0):
 
 def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
-    if c.name == "Python":
+    if c.name == 'Python':
         c.views = 128   #  c = Category(views=128)
         c.likes = 64
 
     if c.name == "Django":
         c.views = 64
         c.likes = 32
+
     if c.name == "Other Frameworks":
         c.views = 32
         c.likes = 16
+
+    c.save()
     return c
 
 # Start execution here!
