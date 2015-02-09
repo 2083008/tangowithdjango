@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib import admin
 from models import Category, Page
+from models import UserProfile
 
 
 class PageAdmin(admin.ModelAdmin):
@@ -18,6 +19,7 @@ class CategoryAdmin(admin.ModelAdmin):
 # Update the registeration to include this customised interface
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(UserProfile)
 
 #admin.site.register(Category, CategoryAdmin)
 #admin.site.register(Page)
