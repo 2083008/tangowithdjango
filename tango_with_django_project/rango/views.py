@@ -220,7 +220,8 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    context_dict = {}
+    return render(request,'rango/restricted.html',context_dict)
 
 from django.contrib.auth import logout
 
