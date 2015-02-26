@@ -120,5 +120,9 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+SESSION_COOKIE_AGE = 1209600  #seconds for how long a cookie will last
+
 LOGIN_URL = '/rango/login/'
 
