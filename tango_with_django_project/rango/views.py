@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from models import Category
 from models import Page
 from forms import CategoryForm
@@ -10,6 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from rango.bing_search import run_query
 
 
 def index(request):
@@ -272,6 +272,16 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/rango/')
-#def about(request):
 
-    #return HttpResponse("<a href='/rango'>Index</a>")
+def search(request):
+
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})
