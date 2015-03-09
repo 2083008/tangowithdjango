@@ -3,13 +3,14 @@ from models import Category
 from models import Page
 from forms import CategoryForm
 from forms import PageForm
-from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from rango.bing_search import run_query
 from django.shortcuts import redirect
+from rango.models import UserProfile
+from rango.forms import UserForm, UserProfileForm
 
 
 def track_url(request):
@@ -302,6 +303,7 @@ def user_login(request):
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
 
+
 @login_required
 def restricted(request):
     context_dict = {}
@@ -317,6 +319,7 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/rango/')
+
 
 def search(request):
 
